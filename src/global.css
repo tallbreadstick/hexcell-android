@@ -1,0 +1,598 @@
+@font-face {
+    font-family: 'Ropa Sans';
+    src: url("assets/fonts/RopaSans-Regular.ttf");
+    font-weight: 400;
+    font-style: normal;
+}
+
+body {
+    background-color: #000;
+    width: 100vw;
+    height: 100vh;
+    padding: 0;
+    margin: 0;
+    overflow: hidden;
+}
+
+.expand-fill {
+    width: 100%;
+    height: 100%;
+}
+
+.screen-fade-in {
+    animation: screenFadeIn 0.5s ease-in-out forwards;
+}
+
+@keyframes screenFadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+#blank-screen {
+    background-color: #000;
+}
+
+#splash-screen {
+    background-color: #222;
+    justify-items: center;
+    align-items: center;
+    justify-content: center;
+    align-content: center;
+}
+
+#splash-logo {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+}
+
+#splash-logo img {
+    transform: translate(8px);
+    user-select: none;
+}
+
+#splash-logo label {
+    font-family: 'Ropa Sans';
+    color: #fff;
+    font-size: 1.5rem;
+    user-select: none;
+}
+
+#main-screen {
+    background-color: #222;
+    width: 100%;
+    height: 100vh;
+}
+
+#nav-bar {
+    width: 100%;
+    height: fit-content;
+    position: absolute;
+    top: 0;
+    left: 0;
+    padding-right: 10px;
+    box-sizing: border-box;
+    background-color: #444;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+#nav-bar label {
+    font-family: 'Ropa Sans';
+    color: #777;
+    user-select: none;
+}
+
+#sidebar {
+    width: 50%;
+    height: 100%;
+    position: relative;
+    top: 0;
+    left: 0;
+    background-color: #111;
+    transition: transform 0.3s ease-in-out;
+    transform: translateX(0);
+    z-index: 10;
+}
+
+#sidebar.sidebar-close {
+    transform: translateX(-100%);
+}
+
+#sidebar .burger-menu {
+    position: inherit;
+    margin-bottom: 20%;
+}
+
+#sidebar .menu-item {
+    position: inherit;
+}
+
+#sidebar hr {
+    width: 90%;
+    height: 2px;
+    border: 0;
+    outline: 0;
+    margin: 15px 5% 15px 5%;
+    background: linear-gradient(to right, transparent, #fff 20%, transparent);
+}
+
+.menu-item {
+    width: 80%;
+    height: fit-content;
+    margin: 10px 10% 10px 10%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 10px;
+}
+
+.menu-item img {
+    filter: invert(1);
+    user-select: none;
+}
+
+.menu-item label {
+    font-family: 'Ropa Sans';
+    color: #fff;
+    font-size: 0.9rem;
+    user-select: none;
+}
+
+.burger-menu {
+    width: 50px;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: auto;
+}
+
+.burger-menu img {
+    filter: invert(1);
+    user-select: none;
+}
+
+#main-body {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 90%;
+    margin-top: 18%;
+    padding: 10px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+}
+
+.menu-container {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.menu-row {
+    width: 100%;
+    height: fit-content;
+    display: flex;
+    flex-direction: row;
+}
+
+.menu-controls {
+    gap: 5px !important;
+}
+
+.menu-container input[type="text"] {
+    border: 0;
+    outline: 0;
+    border-radius: 0%;
+    background-color: #555;
+    padding: 5px;
+    box-sizing: border-box;
+    color: #fff;
+    font-family: Consolas;
+    font-size: 0.8rem;
+}
+
+#conversion button {
+    width: 20%;
+    height: 25px;
+}
+
+.menu-row {
+    gap: 10px;
+}
+
+#conversion .input-field {
+    width: 90%;
+}
+
+#conversion .base-field {
+    width: 10%;
+    text-align: center;
+    margin-left: auto;
+}
+
+#conversion hr {
+    width: 90%;
+    height: 2px;
+    min-height: 2px;
+    border: 0;
+    outline: 0;
+    margin: 15px 5% 15px 5%;
+    background: linear-gradient(to right, transparent, #fff, transparent);
+}
+
+button {
+    border: 0;
+    outline: 0;
+    border-radius: 10px;
+    font-family: 'Ropa Sans';
+    font-size: 0.9rem;
+    color: #fff;
+    background-color: #8B480B;
+    transition: background-color 0.2s ease;
+    user-select: none;
+}
+
+button:active {
+    background-color: #e99e59;
+}
+
+#arithmetic {
+    display: flex;
+    flex-direction: column;
+}
+
+#arithmetic .base-field {
+    width: 10%;
+    text-align: center;
+}
+
+#arithmetic .input-field {
+    width: 90%;
+}
+
+#arithmetic select {
+    outline: 0;
+    border: 0;
+    width: 10%;
+    min-height: 10%;
+    aspect-ratio: 1;
+    border-radius: 50%;
+    appearance: none;
+    text-align: center;
+    background-color: #555;
+    color: #fff;
+    font-family: 'Ropa Sans';
+    font-size: 1.5rem;
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    user-select: none;
+}
+
+#arithmetic button {
+    width: 10%;
+    font-size: 1.5rem;
+}
+
+#arithmetic hr {
+    width: 100%;
+    height: 2px;
+    border: 0;
+    outline: 0;
+    background: linear-gradient(to right, transparent, #fff, transparent);
+}
+
+#complement .input-field {
+    width: 70%;
+}
+
+#complement .context-field {
+    width: 30%;
+}
+
+#complement button:last-of-type {
+    margin-left: auto;
+    width: 15%;
+}
+
+#complement button {
+    font-size: 0.8rem;
+    padding: 5px;
+    width: 25%;
+}
+
+#conversion-table-header {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
+.conversion-tab {
+    padding: 10px;
+    box-sizing: border-box;
+    width: 50%;
+    background-color: #222;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    transition: background-color 0.2s ease;
+}
+
+.conversion-tab label {
+    color: #fff;
+    font-family: 'Ropa Sans';
+    font-size: 0.9rem;
+    user-select: none;
+}
+
+.conversion-tab.active-tab {
+    background-color: #333;
+}
+
+#to-table {
+    width: 100%;
+}
+
+#from-table {
+    width: 100%;
+}
+
+#conversion-table {
+    margin-top: 5px;
+    table-layout: fixed;
+    display: flex;
+    flex-direction: column;
+}
+
+#conversion-table-container {
+    overflow-y: auto;
+    scrollbar-width: none;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    flex-grow: 1;
+    max-height: 65%;
+}
+
+.conversion-table-body tbody {
+    width: 100%;
+    height: 100%;
+}
+
+.conversion-table-body tr {
+    width: 100%;
+}
+
+.conversion-table-body td {
+    background-color: #444;
+    padding: 5px;
+    box-sizing: border-box;
+    color: #fff;
+    font-family: Consolas;
+}
+
+#to-steps td {
+    width: 100%;
+}
+
+#batch-handler {
+    display: flex;
+    flex-direction: column;
+}
+
+#batch-header {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
+#batch-handler hr {
+    width: 90%;
+    height: 2px;
+    min-height: 2px;
+    border: 0;
+    outline: 0;
+    margin: 15px 5% 15px 5%;
+    background: linear-gradient(to right, transparent, #fff, transparent);
+}
+
+.batch-tab-head {
+    width: 33%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    padding: 5px;
+    box-sizing: border-box;
+    background-color: #222;
+    transition: background-color 0.2s ease;
+    user-select: none;
+}
+
+.batch-tab-head.active-tab {
+    background-color: #333;
+}
+
+.batch-tab-head label {
+    color: #fff;
+    font-family: 'Ropa Sans';
+}
+
+#batch-body {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    width: 100%;
+    padding: 0;
+    overflow: hidden;
+}
+
+#batch-controls {
+    width: 100%;
+}
+
+#batch-controls button {
+    font-size: 0.8rem;
+    padding: 5px;
+    box-sizing: border-box;
+    width: 30%;
+}
+
+#conversion-button-panel {
+    flex-direction: column;
+}
+
+.button-panel {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    gap: 5px;
+}
+
+.panel-row {
+    display: flex;
+    flex-direction: row;
+    gap: 5px;
+    align-items: center;
+    justify-content: center;
+}
+
+.add-row {
+    background-color: green;
+}
+
+.add-row:active {
+    background-color: greenyellow;
+}
+
+.delete-all {
+    background-color: red;
+}
+
+.delete-all:active {
+    background-color: palevioletred;
+}
+
+.batch-list {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+    gap: 5px;
+    overflow-y: auto;
+    scrollbar-width: none;
+}
+
+.batch-list .batch-row {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 5px;
+    padding: 0;
+    animation: rowFadeIn 0.1s ease-in-out;
+}
+
+@keyframes rowFadeIn {
+    from {
+        transform: translateY(15px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+.batch-row label {
+    color: #fff;
+    font-family: 'Ropa Sans';
+    text-align: right;
+    font-size: 0.6rem;
+    user-select: none;
+}
+
+#batch-conversion-list label {
+    width: 4%;
+}
+
+#batch-conversion-list input[type="text"] {
+    font-size: 0.6rem;
+}
+
+#batch-conversion-list .input-field {
+    width: 36%;
+}
+
+#batch-conversion-list .base-field {
+    width: 8%;
+    text-align: center;
+}
+
+#batch-arithmetic-list label {
+    width: 4%;
+}
+
+#batch-arithmetic-list .input-field {
+    width: 23%;
+}
+
+#batch-arithmetic-list .base-field {
+    width: 8%;
+    text-align: center;
+}
+
+#batch-arithmetic-list input[type="text"] {
+    font-size: 0.6rem;
+}
+
+#batch-arithmetic-list select {
+    appearance: none;
+    outline: 0;
+    border: 0;
+    background-color: #555;
+    width: 8%;
+    aspect-ratio: 1;
+    color: #fff;
+    text-align: center;
+    box-sizing: border-box;
+    border-radius: 50%;
+    font-family: 'Ropa Sans';
+    font-size: 1.2rem;
+    user-select: none;
+}
+
+#batch-complement-list label {
+    width: 4%;
+}
+
+#batch-complement-list input[type="text"] {
+    font-size: 0.6rem;
+}
+
+#batch-complement-list .context-field {
+    width: 20%;
+}
+
+#batch-complement-list .input-field {
+    width: 30%;
+}
