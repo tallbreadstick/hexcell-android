@@ -71,8 +71,8 @@ function Arithmetic() {
     return (
         <div id="arithmetic" class="menu-container expand-fill">
             <div class="menu-row">
-                <input type="text" class="base-field" autoComplete="false" onBlur={() => { clampBase(); clampInputs() }} />
-                <input type="text" class="input-field" autoComplete="false" onBlur={() => { clampInputs(); validateInput(); }} />
+                <input type="text" class="base-field" autoComplete="off" onBlur={() => { clampBase(); clampInputs() }} />
+                <input type="text" class="input-field" autoComplete="off" onBlur={() => { clampInputs(); validateInput(); }} />
             </div>
             <div class="menu-row">
                 <select id="arithmetic-operator">
@@ -81,7 +81,7 @@ function Arithmetic() {
                     <option value="multiply">×</option>
                     <option value="divide">÷</option>
                 </select>
-                <input type="text" class="input-field" autoComplete="false" onBlur={() => { clampInputs(); validateInput(); }} />
+                <input type="text" class="input-field" inputMode="numeric" autoComplete="off" onBlur={() => { clampInputs(); validateInput(); }} />
             </div>
             <hr />
             <div class="menu-row">

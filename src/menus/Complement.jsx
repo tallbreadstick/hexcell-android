@@ -86,7 +86,7 @@ function Complement() {
     return (
         <div id="complement" class="menu-container expand-fill">
             <div class="menu-row">
-                <input type="text" class="input-field" autoComplete="false" onBlur={clampInputs} />
+                <input type="text" class="input-field" inputMode="numeric" autoComplete="off" onBlur={clampInputs} />
                 <input type="text" class="context-field" readOnly />
             </div>
             <div class="menu-row">
@@ -95,7 +95,7 @@ function Complement() {
                 <button onClick={clearAll}>Clear</button>
             </div>
             <div class="menu-row">
-                <input type="text" class="input-field" autoComplete="false" onBlur={clampInputs} />
+                <input type="text" class="input-field" inputMode="numeric" autoComplete="off" onBlur={clampInputs} />
                 <input type="text" class="context-field" readOnly />
             </div>
         </div>

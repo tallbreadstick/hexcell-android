@@ -596,3 +596,8 @@ button:active {
 #batch-complement-list .input-field {
     width: 30%;
 }
+
+.export-field {
+    user-select: none;
+    -webkit-user-select: none;
+}

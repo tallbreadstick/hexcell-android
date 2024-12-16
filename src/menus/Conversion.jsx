@@ -1,9 +1,21 @@
 import { invoke } from "@tauri-apps/api/core";
 import { createSignal, from, onCleanup } from "solid-js";
+import { getExportData } from "./BatchHandler";
 
 const [tableData, setTableData] = createSignal();
 
-export async function processConversion() {
+export function handleExportReceived() {
+    const data = getExportData();
+    const fields = document.querySelectorAll("#conversion input[type='text']");
+    console.log(fields);
+    fields[0].value = data.input;
+    fields[1].value = data.base1;
+    fields[2].value = data.output;
+    fields[3].value = data.base2;
+    processConversion();
+}
+
+async function processConversion() {
     const inputs = document.querySelectorAll("#conversion .input-field");
     const bases = document.querySelectorAll("#conversion .base-field");
     await invoke("process_conversion", {
@@ -175,8 +187,8 @@ function Conversion() {
     return (
         <div id="conversion" class="menu-container expand-fill">
             <div class="menu-row">
-                <input type="text" class="input-field" autoComplete="false" onBlur={() => { validateInput(); clampInput(); }} />
-                <input type="text" class="base-field" autoComplete="false" onBlur={() => { clampBase(); clampInput(); }} />
+                <input type="text" class="input-field" autoComplete="off" onBlur={() => { validateInput(); clampInput(); }} />
+                <input type="text" class="base-field" inputMode="numeric" autoComplete="off" onBlur={() => { clampBase(); clampInput(); }} />
             </div>
             <div class="menu-row menu-controls">
                 <button onClick={processConversion} onTouchEnd={processConversion}>Convert</button>
@@ -185,7 +197,7 @@ function Conversion() {
             </div>
             <div class="menu-row">
                 <input type="text" class="input-field" readOnly />
-                <input type="text" class="base-field" autoComplete="false" onBlur={clampBase} />
+                <input type="text" class="base-field" inputMode="numeric" autoComplete="off" onBlur={clampBase} />
             </div>
             <hr />
             <div class="conversion-table expand-fill">

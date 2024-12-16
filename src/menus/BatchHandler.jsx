@@ -2,22 +2,27 @@ import { createSignal, onCleanup } from "solid-js";
 import { createStore } from "solid-js/store";
 import { invoke } from "@tauri-apps/api/core";
 import { selectMenu } from "../screens/Main";
-import { processConversion } from "./Conversion";
+import { handleExportReceived } from "./Conversion";
 
 const [conversionList, setConversionList] = createStore([]);
 const [arithmeticList, setArithmeticList] = createStore([]);
 const [complementList, setComplementList] = createStore([]);
 
-// for the time being, this implementation works but sometimes does not. the cause for this undefined behavior is currently unknown.
+const [tempData, setTempData] = createSignal(null);
+
+export function getExportData() {
+    return tempData();
+}
+
 async function exportConversion(index) {
+    setTempData({
+        input: conversionList[index].input,
+        base1: conversionList[index].base1,
+        base2: conversionList[index].base2,
+        output: conversionList[index].output
+    });
     await selectMenu("CONVERSION");
-    const fields = document.querySelectorAll("#conversion input[type='text']");
-    console.log(fields);
-    fields[0].value = conversionList[index].input;
-    fields[1].value = conversionList[index].base1;
-    fields[2].value = conversionList[index].output;
-    fields[3].value = conversionList[index].base2;
-    processConversion();
+    handleExportReceived();
 }
 
 function BatchHandler() {
@@ -413,10 +418,10 @@ function BatchHandler() {
                                     {(item, index) => (
                                         <div class="batch-row">
                                             <label>{index() + 1}</label>
-                                            <input type="text" class="input-field" autoComplete="false" value={item.input} onBlur={() => {clampConversionInput(index())}} />
-                                            <input type="text" class="base-field" autoComplete="false" value={item.base1} onBlur={() => {clampConversionBases(index())}} />
-                                            <input type="text" class="base-field" autoComplete="false" value={item.base2} onBlur={() => {clampConversionBases(index())}} />
-                                            <input type="text" class="input-field" readOnly value={item.output} onPointerDown={(e) => {handlePointerDown(e, index());}} onPointerUp={handlePointerUp} onPointerCancel={handlePointerCancel} />
+                                            <input type="text" class="input-field" autoComplete="off" value={item.input} onBlur={() => {clampConversionInput(index())}} />
+                                            <input type="text" class="base-field" inputMode="numeric" autoComplete="off" value={item.base1} onBlur={() => {clampConversionBases(index())}} />
+                                            <input type="text" class="base-field" inputMode="numeric" autoComplete="off" value={item.base2} onBlur={() => {clampConversionBases(index())}} />
+                                            <input type="text" class="input-field export-field" readOnly value={item.output} onPointerDown={(e) => {handlePointerDown(e, index());}} onPointerUp={handlePointerUp} onPointerCancel={handlePointerCancel} />
                                             <button onClick={() => {deleteConversionRow(index())}}>×</button>
                                         </div>
                                     )}
@@ -428,14 +433,14 @@ function BatchHandler() {
                                     {(item, index) => (
                                         <div class="batch-row">
                                             <label>{index() + 1}</label>
-                                            <input type="text" class="input-field" autoComplete="false" value={item.input1} onBlur={() => {clampArithmeticInputs(index())}} />
-                                            <input type="text" class="input-field" autoComplete="false" value={item.input2} onBlur={() => {clampArithmeticInputs(index())}} />
-                                            <input type="text" class="base-field" autoComplete="false" value={item.base} onBlur={() => {clampArithmeticBases(index())}} />
+                                            <input type="text" class="input-field" autoComplete="off" value={item.input1} onBlur={() => {clampArithmeticInputs(index())}} />
+                                            <input type="text" class="input-field" autoComplete="off" value={item.input2} onBlur={() => {clampArithmeticInputs(index())}} />
+                                            <input type="text" class="base-field" inputMode="numeric" autoComplete="off" value={item.base} onBlur={() => {clampArithmeticBases(index())}} />
                                             <select>
                                                 <option value="add">+</option>
                                                 <option value="subtract">-</option>
                                                 <option value="multiply">×</option>
-                                                <option value="divide">÷</option>
+                                                <option value="divide">/</option>
                                             </select>
                                             <input type="text" class="input-field" readOnly value={item.output} />
                                             <button onClick={() => {deleteArithmeticRow(index())}}>×</button>
@@ -450,8 +455,8 @@ function BatchHandler() {
                                         <div class="batch-row">
                                             <label>{index() + 1}</label>
                                             <input type="text" class="context-field" readOnly value={item.binaryDecimal} />
-                                            <input type="text" class="input-field" autoComplete="false" value={item.binary} onBlur={() => {clampComplementInputs(index())}} />
-                                            <input type="text" class="input-field" autoComplete="false" value={item.complement} onBlur={() => {clampComplementInputs(index())}} />
+                                            <input type="text" class="input-field" inputMode="numeric" autoComplete="off" value={item.binary} onBlur={() => {clampComplementInputs(index())}} />
+                                            <input type="text" class="input-field" inputMode="numeric" autoComplete="off" value={item.complement} onBlur={() => {clampComplementInputs(index())}} />
                                             <input type="text" class="context-field" readOnly value={item.complementDecimal} />
                                             <button onClick={() => {deleteComplementRow(index())}}>×</button>
                                         </div>

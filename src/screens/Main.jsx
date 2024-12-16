@@ -11,8 +11,6 @@ const [menu, setMenu] = createSignal("none");
 
 export async function selectMenu(menuTitle) {
     await setMenu(menuTitle);
-    console.log(menu()); // black magic bug fix???
-    // I think awaiting the console log from an async function helps the timing work??? idk lmaoo
 }
 
 function Main() {
