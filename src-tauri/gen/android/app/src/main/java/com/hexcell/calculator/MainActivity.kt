@@ -1,3 +1,3 @@
-package com.hexcell
+package com.hexcell.calculator
 
 class MainActivity : TauriActivity()

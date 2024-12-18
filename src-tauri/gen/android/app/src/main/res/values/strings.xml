@@ -1,4 +1,4 @@
 <resources>
-    <string name="app_name">hexcell-android</string>
-    <string name="main_activity_title">hexcell-android</string>
+    <string name="app_name">HexCell Calculator</string>
+    <string name="main_activity_title">HexCell Calculator</string>
 </resources>
