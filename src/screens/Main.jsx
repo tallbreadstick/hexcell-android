@@ -19,7 +19,7 @@ function Main() {
         <div id="main-screen">
             <Sidebar />
             <div id="nav-bar">
-                <div class="burger-menu screen-fade-in" onClick={openSidebar} onTouchEnd={openSidebar}>
+                <div class="burger-menu screen-fade-in" onClick={openSidebar}>
                     <img src={BurgerMenu} height="30px" width="30px" />
                 </div>
                 <label>HexCell Calculator © 2024</label>

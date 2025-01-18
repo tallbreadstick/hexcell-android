@@ -156,6 +156,7 @@ body {
 }
 
 .burger-menu img {
+    pointer-events: none;
     filter: invert(1);
     user-select: none;
 }

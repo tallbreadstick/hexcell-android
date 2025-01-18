@@ -153,6 +153,8 @@ function BatchHandler() {
 
     function addConversionRow() {
         setConversionList([...conversionList, { input: "", base1: "", base2: "", output: "" }]);
+        const list = document.getElementById("batch-conversion-list");
+        list.scrollTop = list.scrollHeight;
     }
 
     function deleteConversionRow(index) {
@@ -241,6 +243,8 @@ function BatchHandler() {
 
     function addArithmeticRow() {
         setArithmeticList([...arithmeticList, { input1: "", input2: "", base: "", op: "", output: "" }]);
+        const list = document.getElementById("batch-arithmetic-list");
+        list.scrollTop = list.scrollHeight;
     }
 
     function deleteArithmeticRow(index) {
@@ -357,6 +361,8 @@ function BatchHandler() {
 
     function addComplementRow() {
         setComplementList([...complementList, { binary: "", binaryDecimal: "", complement: "", complementDecimal: "" }]);
+        const list = document.getElementById("batch-complement-list");
+        list.scrollTop = list.scrollHeight;
     }
 
     function deleteComplementRow(index) {

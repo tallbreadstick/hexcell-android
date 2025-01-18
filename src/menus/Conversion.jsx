@@ -191,9 +191,9 @@ function Conversion() {
                 <input type="text" class="base-field" inputMode="numeric" autoComplete="off" onBlur={() => { clampBase(); clampInput(); }} />
             </div>
             <div class="menu-row menu-controls">
-                <button onClick={processConversion} onTouchEnd={processConversion}>Convert</button>
-                <button onClick={processSwap} onTouchEnd={processSwap}>Swap</button>
-                <button onClick={processClear} onTouchEnd={processClear}>Clear</button>
+                <button onClick={processConversion}>Convert</button>
+                <button onClick={processSwap}>Swap</button>
+                <button onClick={processClear}>Clear</button>
             </div>
             <div class="menu-row">
                 <input type="text" class="input-field" readOnly />
